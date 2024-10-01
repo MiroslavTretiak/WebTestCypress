@@ -1,6 +1,7 @@
+
 // Command for registration of new user
 Cypress.Commands.add('registerUser', (userData) => {
-    cy.visit('http://automationexercise.com');
+  
     cy.contains('Signup / Login').click();
     cy.contains('New User Signup!').should('be.visible');
   
@@ -33,15 +34,33 @@ Cypress.Commands.add('registerUser', (userData) => {
     cy.get('[data-qa="create-account"]').click();
     cy.contains('Account Created!').should('be.visible');
     cy.get('[data-qa="continue-button"]').click();
+    cy.contains(`Logged in as ${userData.name}`).should('be.visible');
   });
 
 
 // Command for user login
-Cypress.Commands.add('login', (email, password) => {
-    cy.visit('http://automationexercise.com');
-    cy.contains('Signup / Login').click();
+Cypress.Commands.add('login', (email, password, name) => {
+  const logData = {
+    email: 'Test999@example.com',
+    password: 'Qwerty123',
+    name: 'Testuser'
+  }
+
+  cy.contains('Signup / Login').click();
+    cy.contains('Login to your account').should('be.visible');
+
     cy.get('[data-qa="login-email"]').type(email);
     cy.get('[data-qa="login-password"]').type(password);
     cy.get('[data-qa="login-button"]').click();
+
+    cy.contains(`Logged in as ${logData.name}`).should('be.visible');
   });
 
+// Command for deleting account
+
+Cypress.Commands.add('deleteAccount', () => {
+  cy.contains('Delete Account').click();
+
+    cy.contains('Account Deleted!').should('be.visible');
+    cy.get('[data-qa="continue-button"]').click();
+});
