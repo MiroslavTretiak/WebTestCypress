@@ -39,12 +39,8 @@ Cypress.Commands.add('registerUser', (userData) => {
 
 
 // Command for user login
-Cypress.Commands.add('login', (email, password, name) => {
-  const logData = {
-    email: 'Test999@example.com',
-    password: 'Qwerty123',
-    name: 'Testuser'
-  }
+Cypress.Commands.add('login', (email, password) => {
+
 
   cy.contains('Signup / Login').click();
     cy.contains('Login to your account').should('be.visible');
@@ -52,8 +48,6 @@ Cypress.Commands.add('login', (email, password, name) => {
     cy.get('[data-qa="login-email"]').type(email);
     cy.get('[data-qa="login-password"]').type(password);
     cy.get('[data-qa="login-button"]').click();
-
-    cy.contains(`Logged in as ${logData.name}`).should('be.visible');
   });
 
 // Command for deleting account
