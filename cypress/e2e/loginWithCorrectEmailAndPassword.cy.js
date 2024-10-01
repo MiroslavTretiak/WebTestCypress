@@ -2,7 +2,7 @@
 describe('Login User with correct email and password', () => {
   it('should login user with correct email and password successfully', () =>{
       cy.visit('http://automationexercise.com');
-      const userData1 = {
+      const userData = {
         name: 'Testuser',
         email: `Test999@example.com`,
         password: 'Qwerty123',
@@ -22,12 +22,13 @@ describe('Login User with correct email and password', () => {
       };      
 
       cy.get('body').should('contain', 'Home');
-      cy.registerUser(userData1);
-      cy.contains(' Logout').should('be.visible');
+      cy.registerUser(userData);
+     
       cy.contains(' Logout').click();
   
+      cy.login(userData.email, userData.password);
       
-      cy.login(userData1.email, userData1.password);
+      cy.contains(`Logged in as ${userData.name}`).should('be.visible');
   
       cy.deleteAccount();
     });
