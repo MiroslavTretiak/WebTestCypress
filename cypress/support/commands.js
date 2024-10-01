@@ -1,25 +1,47 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Command for registration of new user
+Cypress.Commands.add('registerUser', (userData) => {
+    cy.visit('http://automationexercise.com');
+    cy.contains('Signup / Login').click();
+    cy.contains('New User Signup!').should('be.visible');
+  
+    cy.get('[data-qa="signup-name"]').type(userData.name);
+    cy.get('[data-qa="signup-email"]').type(userData.email);
+    cy.get('[data-qa="signup-button"]').click();
+  
+    cy.contains('Enter Account Information').should('be.visible');
+  
+    cy.get('#id_gender1').check(); // Check for 'Mr.'
+    cy.get('#password').type(userData.password);
+    cy.get('#days').select(userData.birthDay);
+    cy.get('#months').select(userData.birthMonth);
+    cy.get('#years').select(userData.birthYear);
+  
+    cy.get('#newsletter').check();
+    cy.get('#optin').check();
+  
+    cy.get('#first_name').type(userData.firstName);
+    cy.get('#last_name').type(userData.lastName);
+    cy.get('#company').type(userData.company);
+    cy.get('#address1').type(userData.address1);
+    cy.get('#address2').type(userData.address2);
+    cy.get('#country').select(userData.country);
+    cy.get('#state').type(userData.state);
+    cy.get('#city').type(userData.city);
+    cy.get('#zipcode').type(userData.zipcode);
+    cy.get('#mobile_number').type(userData.mobileNumber);
+  
+    cy.get('[data-qa="create-account"]').click();
+    cy.contains('Account Created!').should('be.visible');
+    cy.get('[data-qa="continue-button"]').click();
+  });
+
+
+// Command for user login
+Cypress.Commands.add('login', (email, password) => {
+    cy.visit('http://automationexercise.com');
+    cy.contains('Signup / Login').click();
+    cy.get('[data-qa="login-email"]').type(email);
+    cy.get('[data-qa="login-password"]').type(password);
+    cy.get('[data-qa="login-button"]').click();
+  });
+
