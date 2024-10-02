@@ -1,5 +1,4 @@
 
-describe('Login User with correct email and password', () => {
   it('should login user with correct email and password successfully', () =>{
       cy.visit('http://automationexercise.com');
       const userData = {
@@ -32,4 +31,3 @@ describe('Login User with correct email and password', () => {
   
       cy.deleteAccount();
     });
-  });
