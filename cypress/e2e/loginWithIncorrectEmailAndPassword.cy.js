@@ -1,4 +1,4 @@
-describe('Login User with incorrect email and password', () => {
+
   it('should login user with incorrect email and password unsuccessfully', () =>{
       cy.visit('http://automationexercise.com');
 
@@ -17,4 +17,3 @@ describe('Login User with incorrect email and password', () => {
       cy.contains('Your email or password is incorrect!').should('be.visible');
       
     });
-  });
