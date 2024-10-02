@@ -40,10 +40,6 @@ cd <repository-folder>
 
 npm install -y
 
-3.  Install cypress:
-
-npm install cypress --save-dev
-
 ## 3. How to Run Tests
 
 After installation, you can run the Cypress tests by following these steps:
