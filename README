@@ -6,18 +6,14 @@ This project is designed to test the functionality and behavior of the website [
 
 The goal is to ensure that key user flows on the website work as expected, including:
 
-Test Case 1: Register User
-Test Case 2: Login User with correct email and password
-Test Case 3: Login User with incorrect email and password
-Test Case 4: Logout User
-Test Case 5: Register User with existing email
-Test Case 12: Add Products in Cart
-Test Case 13: Verify Product quantity in Cart
-Test Case 14: Place Order: Register while Checkout
-Test Case 15: Place Order: Register before Checkout
-Test Case 16: Place Order: Login before Checkout
-Test Case 17: Remove Products From Cart
-
+1. Test Case 1: Register User
+2. Test Case 2: Login User with correct email and password
+3. Test Case 3: Login User with incorrect email and password
+4. Test Case 4: Logout User
+5. Test Case 5: Register User with existing email
+6. Test Case 8: Verify All Products and product detail page
+7. Test Case 9: Search Product
+8. Test Case 21: Add review on product
 
 ## 1. Requirements
 
@@ -30,3 +26,40 @@ To run Cypress tests for this project, you need the following:
 Browser requirements:
 - Google Chrome (default for Cypress)
 - Other supported browsers
+
+## 2. How to Install
+
+Follow these steps to set up the project and install Cypress:
+
+1. Clone the Repository:
+
+git clone <https://github.com/MiroslavTretiak/WebTestCypress>
+cd <repository-folder>
+
+2. Install Dependencies: Make sure you have Node.js and npm installed, then run:
+
+npm install -y
+
+3. Install Cypress: Cypress will be installed automatically as a dependency via the previous command. However, if you need to install it separately, you can run:
+
+npm install cypress --save-dev
+
+## 3. How to Run Tests
+
+After installation, you can run the Cypress tests by following these steps:
+
+1. Open Cypress Test Runner: You can open Cypress Test Runner by running the following command:
+
+npx cypress open 
+or add script in .json and run:
+npm run (script name)
+
+4. Any Issues with Tests or Website?
+
+If you encounter any issues while running the tests or if there are problems with the website itself, consider the following:
+
+1. Check Cypress Documentation: Refer to the Cypress Documentation for detailed information about commands, assertions, and best practices.
+2. Ensure Correct Setup: Make sure Node.js and npm are properly installed and that you've followed the installation steps correctly.
+3. Browser Compatibility: If issues arise in a specific browser, try running tests in a different supported browser.
+4. Report Issues: If you find bugs related to the website or the tests, consider reporting them for further investigation.
+ 
