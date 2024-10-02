@@ -40,7 +40,7 @@ cd <repository-folder>
 
 npm install -y
 
-3. Install Cypress: Cypress will be installed automatically as a dependency via the previous command. However, if you need to install it separately, you can run:
+3.  Install cypress:
 
 npm install cypress --save-dev
 

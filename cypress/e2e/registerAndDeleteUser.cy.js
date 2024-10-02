@@ -1,38 +1,32 @@
 
-const userData = {
-  name: 'Testuser',
-  email: `Testuse${Date.now()}@example.com`,
-  password: 'Qwerty123',
-  firstName: 'Test',
-  lastName: 'User',
-  company: 'TestCompany',
-  address1: 'TestStreet',
-  address2: 'Bird 56',
-  country: 'United States',
-  state: 'California',
-  city: 'Los Angeles',
-  zipcode: '90001',
-  mobileNumber: '1234567890',
-  birthDay: '10',
-  birthMonth: 'May',
-  birthYear: '1990',
+it('should register a new user and delete successfully', () => {
+  
+  // Load user data from the fixture file
+  cy.fixture('userData').then((userData) => {
 
-};
+    // Generate a dynamic email by appending the current timestamp
+    userData.email = `Testuser${Date.now()}@example.com`;
 
-  it('should register a new user and deletin successfully', () =>{
-    cy.visit('http://automationexercise.com');
+    // Visit the homepage of the Automation Exercise website
+    cy.visit('');
+
+    // Verify that the home page is visible by checking for the presence of 'Home'
     cy.get('body').should('contain', 'Home');
 
+    // Call the custom command to register the user with the loaded user data
     cy.registerUser(userData);
 
+    // Click on the 'Delete Account' button to initiate account deletion
     cy.contains('Delete Account').click();
 
+    // Verify that the account deletion confirmation message is visible
     cy.contains('Account Deleted!').should('be.visible');
+
+    // Click the continue button to return to the homepage
     cy.get('[data-qa="continue-button"]').click();
-
-
-
   });
+});
+
 
 
 

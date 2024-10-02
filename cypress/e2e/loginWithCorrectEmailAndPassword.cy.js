@@ -1,33 +1,27 @@
+it('should login user with correct email and password successfully', () => {
 
-  it('should login user with correct email and password successfully', () =>{
-      cy.visit('http://automationexercise.com');
-      const userData = {
-        name: 'Testuser',
-        email: `Test999@example.com`,
-        password: 'Qwerty123',
-        firstName: 'Test',
-        lastName: 'User',
-        company: 'TestCompany',
-        address1: 'TestStreet',
-        address2: 'Bird 56',
-        country: 'United States',
-        state: 'California',
-        city: 'Los Angeles',
-        zipcode: '90001',
-        mobileNumber: '1234567890',
-        birthDay: '10',
-        birthMonth: 'May',
-        birthYear: '1990',    
-      };      
+  // Load user data from the fixture file
+  cy.fixture('userData1').then((userData) => {
 
-      cy.get('body').should('contain', 'Home');
-      cy.registerUser(userData);
-     
-      cy.contains(' Logout').click();
-  
-      cy.login(userData.email, userData.password);
-      
-      cy.contains(`Logged in as ${userData.name}`).should('be.visible');
-  
-      cy.deleteAccount();
-    });
+    // Visit the homepage of the Automation Exercise website
+    cy.visit('');
+
+    // Verify that the home page is visible by checking for the presence of 'Home'
+    cy.get('body').should('contain', 'Home');
+
+    // Register a new user using the data from the fixture
+    cy.registerUser(userData);
+
+    // Click on the 'Logout' button to ensure the user is logged out before attempting to log in again
+    cy.contains('Logout').click();
+
+    // Log in using the email and password from the user data loaded from the fixture
+    cy.login(userData.email, userData.password);
+
+    // Verify that the user is logged in by checking for the visibility of the welcome message with the user's name
+    cy.contains(`Logged in as ${userData.name}`).should('be.visible');
+
+    // Delete the account after successful login to clean up
+    cy.deleteAccount();
+  });
+});

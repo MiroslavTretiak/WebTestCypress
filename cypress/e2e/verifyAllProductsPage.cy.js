@@ -1,25 +1,44 @@
+it('should show "All Products" and product detail page', () => {
+  
+  // Visit the homepage of the Automation Exercise website
+  cy.visit('');
 
+  // Verify that the home page is visible by checking for the presence of 'Home'
+  cy.get('body').should('contain', 'Home');
 
-  it('should show "All Products" and product detail page', () =>{
+  // Click on the 'Products' button to navigate to the Products page
+  cy.contains('Products').click();
 
-    cy.visit('http://automationexercise.com');
+  // Verify that the 'All Products' section is visible, indicating successful navigation
+  cy.contains('All Products').should('be.visible');
 
-    cy.get('body').should('contain', 'Home');
+  // Ensure that the product items section is also visible on the All Products page
+  cy.get('.features_items').should('be.visible');
 
-    cy.contains('Products').click();
+  // Click on the 'View Product' button to view the details of the first product
+  cy.contains('View Product').click();
 
-    cy.contains('All Products').should('be.visible');
-    cy.get('.features_items').should('be.visible');
+  // Verify that the URL includes '/product_details', confirming navigation to the product detail page
+  cy.url().should('include', '/product_details');
 
-    cy.contains('View Product').click();
+  // Check that the product information section is visible on the product detail page
+  cy.get('.product-information').should('be.visible');
 
-    cy.url().should('include', '/product_details');
-    cy.get('.product-information').should('be.visible');
+  // Verify that the product name 'Blue Top' is visible on the product detail page
+  cy.contains('Blue Top').should('be.visible');
 
-    cy.contains('Blue Top').should('be.visible');
-    cy.contains('Category: Women > Tops').should('be.visible');
-    cy.contains('Rs. 500').should('be.visible');
-    cy.contains('Availability:').should('be.visible');
-    cy.contains('Condition:').should('be.visible');
-    cy.contains('Brand:').should('be.visible');
-  });
+  // Verify that the product category is correctly displayed
+  cy.contains('Category: Women > Tops').should('be.visible');
+
+  // Verify that the product price 'Rs. 500' is visible on the product detail page
+  cy.contains('Rs. 500').should('be.visible');
+
+  // Check for the presence of the availability information
+  cy.contains('Availability:').should('be.visible');
+
+  // Check for the presence of the condition information
+  cy.contains('Condition:').should('be.visible');
+
+  // Check for the presence of the brand information
+  cy.contains('Brand:').should('be.visible');
+});

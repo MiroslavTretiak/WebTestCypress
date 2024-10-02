@@ -41,7 +41,6 @@ Cypress.Commands.add('registerUser', (userData) => {
 // Command for user login
 Cypress.Commands.add('login', (email, password) => {
 
-
   cy.contains('Signup / Login').click();
     cy.contains('Login to your account').should('be.visible');
 
