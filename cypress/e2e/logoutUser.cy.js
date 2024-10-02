@@ -1,7 +1,7 @@
 it('should login user with correct email and password successfully', () => {
 
     cy.fixture('logData1').then((logData1) => {
-        cy.visit(''); // Visit the homepage
+        cy.visit(''); 
         cy.get('body').should('contain', 'Home'); // Check home page visibility
         
         cy.login(logData1.email, logData1.password); // Login with fixture data
